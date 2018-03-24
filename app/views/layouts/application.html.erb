@@ -4,13 +4,13 @@
   <title>InteractiveItinerary</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <%= stylesheet_link_tag 'application', media: 'all' %>
-  
+
     <%= javascript_include_tag "vendor/modernizr" %>
-  
+
   <%= csrf_meta_tags %>
 </head>
 <body>
-  
+
   <nav class="top-bar">
     <ul class="title-area">
       <li class="name">
@@ -20,9 +20,14 @@
 
     <section class="top-bar-section">
       <ul class="right">
-        <%- if current_user -%>
+        <%- if current_host -%>
+        <li><%= link_to 'Host a Trip', new_trip_path %></li>
+        <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+        <%- elsif current_user -%>
+          <li><%= link_to 'Join Trip', new_attendance_path %></li>
           <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
         <%- else -%>
+          <li><%= link_to 'Become a Host', new_host_registration_path %></li>
           <li><%= link_to 'Sign Up', new_user_registration_path %></li>
           <li><%= link_to 'Sign In', new_user_session_path %></li>
         <%- end -%>
