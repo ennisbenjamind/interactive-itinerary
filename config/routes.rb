@@ -1,20 +1,29 @@
 Rails.application.routes.draw do
+  root 'static_pages#index'
   devise_for :hosts
-  root 'homes#index'
   devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
 
 Rails.application.routes.draw do
-  resources :trips, only: [:new, :create, :index]
-
+  resources :trips do
+    resources :events, to: 'static_pages#index'
+  end
+  resources :trips do
+    resources :lodgings, to: 'static_pages#index'
+  end
+  resources :trips do
+    resources :expenses, to: 'static_pages#index'
+  end
   resources :attendances
+  resources :trips, only: [:new, :create, :index]
 end
 
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :trips
+      resources :trips do
+        resources :events
+      end
     end
   end
 end
