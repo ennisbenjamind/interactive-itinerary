@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :trips
+  has_many :attendances
   has_many :trips, through: :attendances
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

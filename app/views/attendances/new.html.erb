@@ -1,8 +1,13 @@
 
 <%= form_for(@attendance) do |f| %>
 <div class="field">
-  <%= f.label :trip_id %><br />
+  <%= f.label :trip_id, 'Trip ID' %><br />
   <%= f.text_field :trip_id%>
+</div>
+
+<div class="field">
+  <%= label :password, 'Enter Trip Password' %><br />
+  <%= text_field_tag :password%>
 </div>
 
 <div class="actions">

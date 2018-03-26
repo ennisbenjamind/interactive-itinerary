@@ -7,18 +7,25 @@ class AttendancesController < ApplicationController
   end
 
   def create
+    @password = password_params[:password]
+    @password_validation = Trip.find_by(password: @password )
     @trip = attendance_params[:trip_id]
+    if @password_validation && @password_validation.id == @trip
     @attendance = Attendance.new(trip_id: @trip.to_i, user_id: current_user.id)
-    if @attendance.save
+    @attendance.save
       flash[:success] = 'Trip joined!'
       redirect_to root_path
     else
-      flash[:errors] = @question.errors.full_messages.join(', ')
-      render :new
+      flash[:errors] = 'Invalid Trip Password and/or Trip ID'
+      redirect_to root_path
     end
   end
 
   def attendance_params
     params.require(:attendance).permit(:trip_id)
+  end
+
+  def password_params
+    params.slice(:password)
   end
 end

@@ -1,0 +1,9 @@
+<% @trips.each do |trip| %>
+<h1> Share these credentials with fellow travelers! </h1>
+<div>
+<h2><%= trip.name %></h2>
+<li><%= "Trip ID: #{trip.id}" %></li>
+<li><%= "Trip Password: #{trip.password}" %></li>
+</div>
+
+<% end %>

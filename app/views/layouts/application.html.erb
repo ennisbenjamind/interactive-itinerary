@@ -21,6 +21,7 @@
     <section class="top-bar-section">
       <ul class="right">
         <%- if current_host -%>
+        <li><%= link_to 'Trip Invitations', trips_path %></li>
         <li><%= link_to 'Host a Trip', new_trip_path %></li>
         <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
         <%- elsif current_user -%>
@@ -28,8 +29,9 @@
           <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
         <%- else -%>
           <li><%= link_to 'Become a Host', new_host_registration_path %></li>
-          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-          <li><%= link_to 'Sign In', new_user_session_path %></li>
+          <li><%= link_to 'Sign in as Host', new_host_session_path %></li>
+          <li><%= link_to 'Sign Up as Attendee', new_user_registration_path %></li>
+          <li><%= link_to 'Sign In as Attendee', new_user_session_path %></li>
         <%- end -%>
       </ul>
     </section>

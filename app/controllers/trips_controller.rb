@@ -13,12 +13,26 @@ class TripsController < ApplicationController
       flash[:success] = 'Trip created!'
       redirect_to root_path
     else
-      flash[:errors] = @question.errors.full_messages.join(', ')
+      flash[:errors] = @trip.errors.full_messages.join(', ')
       render :new
     end
   end
 
+  def index
+    @trips = current_host.trips
+    if @trips == []
+      flash[:errors] = "You are not currently hosting any trips"
+      redirect_to root_path
+    end
+  end
+
+  def edit
+    @trip = Trip.find(params[:id])
+  end
+
+
   def trip_params
     params.require(:trip).permit(:name, :start_date, :end_date, :password)
   end
+
 end
