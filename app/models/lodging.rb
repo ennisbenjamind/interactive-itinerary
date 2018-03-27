@@ -1,4 +1,4 @@
 class Lodging < ApplicationRecord
-  validates_presence_of :location, :check_in, :check_out
+  validates_presence_of :location, :check_in_time, :check_out_time, :check_in_date, :check_out_date
   belongs_to :trip
 end

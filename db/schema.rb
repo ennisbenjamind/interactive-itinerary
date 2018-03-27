@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180324191536) do
+ActiveRecord::Schema.define(version: 20180327211634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,12 +24,16 @@ ActiveRecord::Schema.define(version: 20180324191536) do
 
   create_table "events", force: :cascade do |t|
     t.bigint "trip_id"
-    t.string "location", null: false
-    t.datetime "time", null: false
     t.decimal "expense"
     t.string "details"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "address", null: false
+    t.string "state", null: false
+    t.integer "zip", null: false
+    t.string "name", null: false
+    t.time "time", null: false
+    t.date "date", null: false
     t.index ["trip_id"], name: "index_events_on_trip_id"
   end
 
@@ -52,12 +56,18 @@ ActiveRecord::Schema.define(version: 20180324191536) do
 
   create_table "lodgings", force: :cascade do |t|
     t.bigint "trip_id"
-    t.string "location", null: false
-    t.datetime "check_in", null: false
-    t.datetime "check_out", null: false
     t.decimal "expense"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "address", null: false
+    t.string "state", null: false
+    t.integer "zip", null: false
+    t.integer "unit"
+    t.string "name", null: false
+    t.time "check_in_time", null: false
+    t.date "check_in_date", null: false
+    t.time "check_out_time", null: false
+    t.date "check_out_date", null: false
     t.index ["trip_id"], name: "index_lodgings_on_trip_id"
   end
 

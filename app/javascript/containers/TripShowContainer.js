@@ -10,17 +10,17 @@ class TripShowContainer extends Component {
   }
 
   render() {
+    
+    return (
+      <div>
+        <NavBar
+          key = {this.props.params.id}
+          id = {this.props.params.id}
+        />
 
-  return (
-    <div>
-    <NavBar
-    key = {this.props.params.id}
-    id = {this.props.params.id}
-  />
-
-  </div>
-  );
-}
+      </div>
+    );
+  }
 }
 
 export default TripShowContainer;

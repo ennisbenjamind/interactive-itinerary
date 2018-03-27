@@ -14,15 +14,16 @@ class EventsContainer extends Component {
 
   render() {
 
-  return (
-    <div>
-    <NavBar
-      key = {this.props.params.id}
-      id = {this.props.params.id}
-    />
-    <h1> events</h1>
-  </div>
-  );
-}
+    return (
+      <div>
+        <NavBar
+          key = {this.props.params.id}
+          id = {this.props.params.id}
+        />
+        <Link to={`/trips/${this.props.params.id}/events/new`}>Add Event</Link>
+        <h1> events</h1>
+      </div>
+    );
+  }
 }
 export default EventsContainer;

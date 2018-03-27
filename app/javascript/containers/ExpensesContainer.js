@@ -14,15 +14,15 @@ class ExpensesContainer extends Component {
 
   render() {
 
-  return (
-    <div>
-    <NavBar
-      key = {this.props.params.id}
-      id = {this.props.params.id}
-    />
-    <h1> expenses</h1>
-  </div>
-  );
-}
+    return (
+      <div>
+        <NavBar
+          key = {this.props.params.id}
+          id = {this.props.params.id}
+        />
+        <h1> expenses</h1>
+      </div>
+    );
+  }
 }
 export default ExpensesContainer;

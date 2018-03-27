@@ -14,15 +14,16 @@ class LodgingsContainer extends Component {
 
   render() {
 
-  return (
-    <div>
-    <NavBar
-      key = {this.props.params.id}
-      id = {this.props.params.id}
-    />
-    <h1> lodgings</h1>
-  </div>
-  );
-}
+    return (
+      <div>
+        <NavBar
+          key = {this.props.params.id}
+          id = {this.props.params.id}
+        />
+        <Link to={`/trips/${this.props.params.id}/lodgings/new`}>Add Lodging</Link>
+        <h1> lodgings</h1>
+      </div>
+    );
+  }
 }
 export default LodgingsContainer;
