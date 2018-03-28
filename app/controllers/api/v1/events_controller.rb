@@ -1,8 +1,6 @@
-class Api::V1::TripsController < ApiController
+class Api::V1::EventsController < ApiController
 
-  def new
-  render json: {trip: Trip.find(params[:id])}
-  review = Review.new
+  def show
   end
 
   def create
@@ -10,7 +8,11 @@ class Api::V1::TripsController < ApiController
     if event.save
       render json: { events: Event.all }
     else
-      render json: { messages: event.errors.full_messages }
+      render json: { errors: event.errors.full_messages }
     end
+  end
+
+  def event_params
+    params.require(:event).permit(:name, :time, :date, :address, :expense, :details, :trip_id)
   end
 end

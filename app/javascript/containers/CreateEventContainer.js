@@ -2,36 +2,33 @@ import React, {Component} from 'react';
 import {Router,browserHistory, Route, IndexRoute, Link} from 'react-router';
 import NavBar from '../components/NavBar';
 import NameField from '../components/NameField';
-import AddressField from '../components/AddressField';
-import StateField from '../components/StateField';
-import ZipField from '../components/ZipField';
 import ExpenseField from '../components/ExpenseField';
 import DetailsField from '../components/DetailsField';
 import TimeField from '../components/TimeField';
-
+import DateField from '../components/DateField';
+import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 
 class CreateEventContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       errors: [],
-      name: '',
-      address:'',
-      state:'',
-      zip:'',
-      expense:'',
+      name: 'Trip to the Art Museum!',
+      address:'Philadelphia Museum of Art, Benjamin Franklin Parkway, Philadelphia, PA, USA',
+      expense:'0',
       details:'',
-      time: ''
+      time: '',
+      date: '',
+      trip_id: this.props.params.id
     }
-    // this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
     this.handleClearForm = this.handleClearForm.bind(this)
     this.handleName = this.handleName.bind(this)
-    this.handleAddress = this.handleAddress.bind(this)
-    this.handleState = this.handleState.bind(this)
-    this.handleZip = this.handleZip.bind(this)
     this.handleExpense = this.handleExpense.bind(this)
     this.handleDetails = this.handleDetails.bind(this)
     this.handleTime = this.handleTime.bind(this)
+    this.onChange = this.onChange.bind(this)
+    this.handleDate = this.handleDate.bind(this)
   }
 
   handleClearForm(event){
@@ -40,25 +37,70 @@ class CreateEventContainer extends Component {
       errors: [],
       name: '',
       address:'',
-      state:'',
-      zip:'',
       expense:'',
       details:'',
-      time: ''
+      time: '',
+      date: '',
+      trip_id: this.props.params.id
     })
+  }
+
+  addNewEvent(submission){
+    let trip_id = this.props.params.id
+    fetch(`/api/v1/events`, {
+      credentials: 'same-origin',
+      method: 'POST',
+      body: JSON.stringify(submission),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept-Type': 'application/json'
+       }
+    })
+    .then (response => {
+      if (response.ok || response.status == 422) {
+        return response
+      } else {
+        let errorMessage = `${response.status}`
+        error = new Error(errorMessage)
+        throw(error)
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      if (body.errors) {
+        this.setState({
+          errors: body.errors
+        });
+      } else {
+        browserHistory.push(`/trips/${trip_id}/events`)
+      }
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault()
+    let formPayload = {
+      name: this.state.name,
+      address: this.state.address,
+      expense: this.state.expense,
+      details: this.state.datails,
+      time: this.state.time,
+      date: this.state.date,
+      trip_id: this.state.trip_id
+  }
+    this.addNewEvent(formPayload)
+    geocodeByAddress(this.state.address)
+      .then(results => getLatLng(results[0]))
+      .then(latLng => console.log('Success', latLng))
+      .catch(error => console.error('Error', error))
   }
 
     handleName (event){
       this.setState({name: event.target.value})
     }
-    handleAddress (event){
-      this.setState({address: event.target.value})
-    }
-    handleState (event){
-      this.setState({state: event.target.value})
-    }
-    handleZip (event){
-      this.setState({zip: event.target.value})
+    onChange (address){
+      this.setState({address: address})
     }
     handleExpense (event){
       this.setState({expense: event.target.value})
@@ -69,16 +111,25 @@ class CreateEventContainer extends Component {
     handleTime (event){
       this.setState({time: event.target.value})
     }
+    handleDate (event){
+      this.setState({date: event.target.value})
+    }
 
 
   render() {
     console.log(this.state)
+    const inputProps = {
+      value: this.state.address,
+      onChange: this.onChange,
+    }
+    let message = this.state.errors[0]
     return (
       <div>
         <NavBar
           key = {this.props.params.id}
           id = {this.props.params.id}
         />
+        {message}
         <form className="new-article-form callout" onSubmit={this.handleSubmit}>
 
           <NameField
@@ -87,28 +138,20 @@ class CreateEventContainer extends Component {
             handleChange={this.handleName}
           />
 
+          <PlacesAutocomplete
+            inputProps={inputProps}
+          />
+
+          <DateField
+            content={this.state.date}
+            label="Date:"
+            handleChange={this.handleDate}
+          />
+
           <TimeField
             content={this.state.time}
-            label="When:"
+            label="Time:"
             handleChange={this.handleTime}
-          />
-
-          <AddressField
-            content={this.state.address}
-            label = {"Address:"}
-            handleChange={this.handleAddress}
-          />
-
-          <StateField
-            content={this.state.state}
-            label ={"State:"}
-            handleChange={this.handleState}
-          />
-
-          <ZipField
-            content={this.state.zip}
-            label = {"Zipcode:"}
-            handleChange={this.handleZip}
           />
 
           <ExpenseField

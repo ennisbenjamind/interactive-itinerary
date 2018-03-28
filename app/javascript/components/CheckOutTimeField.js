@@ -1,15 +1,15 @@
 import React from 'react';
 
-const ZipField = (props) => {
+const CheckOutTimeField = (props) => {
   return (
     <label>{props.label}
-      <textarea
+      <input
         onChange = {props.handleChange}
-        type='text'
+        type="time"
         value={props.content}
       />
     </label>
   );
 }
 
-export default ZipField;
+export default CheckOutTimeField;

@@ -25,4 +25,5 @@ class ExpensesContainer extends Component {
     );
   }
 }
+
 export default ExpensesContainer;

@@ -1,95 +1,194 @@
 import React, {Component} from 'react';
 import {Router,browserHistory, Route, IndexRoute, Link} from 'react-router'
 import NavBar from '../components/NavBar'
-var map;
-var infoWindow;
-var service;
-
-
+import NameField from '../components/NameField';
+import ExpenseField from '../components/ExpenseField';
+import CheckInTimeField from '../components/CheckInTimeField';
+import CheckOutTimeField from '../components/CheckOutTimeField';
+import CheckInDateField from '../components/CheckInDateField';
+import CheckOutDateField from '../components/CheckOutDateField';
+import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 
 class CreateLodgingContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // lodgings: [],
-      // messages: [],
+      errors: [],
+      name: 'AirBnb, Couchsurfing, Hotel?',
+      address:'Philadelphia Marriott Downtown, Market Street, Philadelphia, PA, USA',
+      expense:'0',
+      details:'',
+      check_in_time: '',
+      check_out_time: '',
+      check_in_date: '',
+      check_out_date: '',
+      trip_id: this.props.params.id
     }
-
-    function initMap() {
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: -33.867, lng: 151.206},
-        zoom: 15,
-        styles: [{
-          stylers: [{ visibility: 'simplified' }]
-        }, {
-          elementType: 'labels',
-          stylers: [{ visibility: 'off' }]
-        }]
-      });
-
-      infoWindow = new google.maps.InfoWindow();
-      service = new google.maps.places.PlacesService(map);
-
-      // The idle event is a debounced event, so we can query & listen without
-      // throwing too many requests at the server.
-      map.addListener('idle', performSearch);
-    }
-
-    function performSearch() {
-      var request = {
-        bounds: map.getBounds(),
-        keyword: 'best view'
-      };
-      service.radarSearch(request, callback);
-    }
-
-    function callback(results, status) {
-      if (status !== google.maps.places.PlacesServiceStatus.OK) {
-        console.error(status);
-        return;
-      }
-      for (var i = 0, result; result = results[i]; i++) {
-        addMarker(result);
-      }
-    }
-
-    function addMarker(place) {
-      var marker = new google.maps.Marker({
-        map: map,
-        position: place.geometry.location,
-        icon: {
-          url: 'https://developers.google.com/maps/documentation/javascript/images/circle.png',
-          anchor: new google.maps.Point(10, 10),
-          scaledSize: new google.maps.Size(10, 17)
-        }
-      });
-
-      google.maps.event.addListener(marker, 'click', function() {
-        var request = {placeId: place.place_id};
-
-        service.getDetails(request, function(result, status) {
-          if (status !== google.maps.places.PlacesServiceStatus.OK) {
-            console.error(status);
-            return;
-          }
-          infoWindow.setContent(result.name);
-          infoWindow.open(map, marker);
-        });
-      });
-    }
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleClearForm = this.handleClearForm.bind(this)
+    this.handleName = this.handleName.bind(this)
+    this.handleExpense = this.handleExpense.bind(this)
+    this.handleCheckInDate = this.handleCheckInDate.bind(this)
+    this.handleCheckInTime = this.handleCheckInTime.bind(this)
+    this.handleCheckOutDate = this.handleCheckOutDate.bind(this)
+    this.handleCheckOutTime = this.handleCheckOutTime.bind(this)
+    this.onChange = this.onChange.bind(this)
   }
 
-  render() {
+  handleClearForm(event){
+    event.preventDefault()
+    this.setState({
+      errors: [],
+      name: '',
+      address:'',
+      expense:'0',
+      check_in_time: '',
+      check_out_time: '',
+      check_in_date: '',
+      check_out_date: '',
+      trip_id: this.props.params.id
+    })
+  }
 
+  addNewLodging(submission){
+    let trip_id = this.props.params.id
+    fetch(`/api/v1/lodgings`, {
+      credentials: 'same-origin',
+      method: 'POST',
+      body: JSON.stringify(submission),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept-Type': 'application/json'
+      }
+    })
+    .then (response => {
+      if (response.ok || response.status == 422) {
+        return response
+      } else {
+        let errorMessage = `${response.status}`
+        error = new Error(errorMessage)
+        throw(error)
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      if (body.errors) {
+        this.setState({
+          errors: body.errors
+        });
+      } else {
+        browserHistory.push(`/trips/${trip_id}/lodgings`)
+      }
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault()
+    let formPayload = {
+      name: this.state.name,
+      address: this.state.address,
+      expense: this.state.expense,
+      check_in_time: this.state.check_in_time,
+      check_out_time: this.state.check_out_time,
+      check_in_date: this.state.check_in_date,
+      check_out_date: this.state.check_out_date,
+      trip_id: this.state.trip_id
+    }
+    this.addNewLodging(formPayload)
+    geocodeByAddress(this.state.address)
+    .then(results => getLatLng(results[0]))
+    .then(latLng => console.log('Success', latLng))
+    .catch(error => console.error('Error', error))
+  }
+
+  handleName (event){
+    this.setState({name: event.target.value})
+  }
+  onChange (address){
+    this.setState({address: address})
+  }
+  handleExpense (event){
+    this.setState({expense: event.target.value})
+  }
+  handleCheckInTime (event){
+    this.setState({check_in_time: event.target.value})
+  }
+  handleCheckOutTime (event){
+    this.setState({check_out_time: event.target.value})
+  }
+  handleCheckInDate (event){
+    this.setState({check_in_date: event.target.value})
+  }
+  handleCheckOutDate (event){
+    this.setState({check_out_date: event.target.value})
+  }
+
+
+  render() {
+      console.log(this.state)
+      const inputProps = {
+        value: this.state.address,
+        onChange: this.onChange,
+      }
+      let message = this.state.errors[0]
     return (
       <div>
         <NavBar
           key = {this.props.params.id}
           id = {this.props.params.id}
         />
-        <h1> add lodging</h1>
-      </div>
-    );
+        {message}
+        <form className="new-article-form callout" onSubmit={this.handleSubmit}>
+
+          <NameField
+            content={this.state.name}
+            label="Lodging:"
+            handleChange={this.handleName}
+          />
+
+          <PlacesAutocomplete
+            inputProps={inputProps}
+          />
+
+            <CheckInDateField
+              content={this.state.check_in_date}
+              label="Check-in Date:"
+              handleChange={this.handleCheckInDate}
+            />
+
+            <CheckInTimeField
+              content={this.state.check_in_time}
+              label="Check-in Time:"
+              handleChange={this.handleCheckInTime}
+            />
+
+            <CheckOutDateField
+              content={this.state.check_out_date}
+              label="Check-out Date:"
+              handleChange={this.handleCheckOutDate}
+            />
+
+            <CheckOutTimeField
+              content={this.state.check_out_time}
+              label="Check-out Time:"
+              handleChange={this.handleCheckOutTime}
+            />
+
+            <ExpenseField
+              content={this.state.expense}
+              label ={"Event expense (Optional):"}
+              handleChange={this.handleExpense}
+            />
+
+
+            <div className="button-group">
+              <button className="button" onClick={this.handleClearForm}>Clear</button>
+              <input className="button" type="submit" value="Submit"  />
+            </div>
+          </form>
+        </div>
+      );
+    }
   }
-}
 export default CreateLodgingContainer;

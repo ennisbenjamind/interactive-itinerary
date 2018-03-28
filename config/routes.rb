@@ -23,7 +23,10 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :trips do
         resources :events
+        resources :lodgings
       end
+      resources :events
+      resource :lodgings
     end
   end
 end
