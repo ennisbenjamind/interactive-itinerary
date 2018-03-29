@@ -1,5 +1,5 @@
 class TripsController < ApplicationController
-  
+
   before_action :authenticate_host!
 
   def new
@@ -8,6 +8,7 @@ class TripsController < ApplicationController
 
   def create
     @trip = Trip.new(trip_params)
+    @trip.expenses = 0
     @trip.host_id = current_host.id
     if @trip.save
       flash[:success] = 'Trip created!'

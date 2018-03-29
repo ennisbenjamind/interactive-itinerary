@@ -9,7 +9,7 @@ class EventsContainer extends Component {
     super(props);
     this.state = {
       events: [],
-      messages: [],
+      messages: []
     }
   }
 
@@ -35,17 +35,40 @@ class EventsContainer extends Component {
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  deleteEvent(id) {
+    fetch(`/api/v1/events/${id}`, {
+      method: 'DELETE',
+      credentials: 'same-origin'
+    }).then(response => {
+        if (response.ok) {
+          return response
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`
+          let error = new Error(errorMessage)
+          throw(error)
+        }
+      }
+    )
+    .then(body => {
+      browserHistory.push(`/trips/${this.props.params.id}/events`)
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`))
+  }
 
   render() {
+
     console.log(this.state)
     let events = this.state.events.map(event=>{
+      let handleClick = () => { this.deleteEvent(event.id) }
       let date = new Date(event.date).toDateString()
       let time = new Date(event.time).toTimeString()
       return(
         <div className="callout">
           <EventTile
             key={event.id}
+            id={event.id}
             name={event.name}
+            handleClick={handleClick}
             address={event.address}
             expense={event.expense}
             details={event.details}

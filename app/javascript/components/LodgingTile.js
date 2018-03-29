@@ -31,6 +31,7 @@ const LodgingTile = (props) => {
               <p>Check-in: {props.checkInDate} {props.checkInTime}</p>
               <p>Check-out: {props.checkOutDate} {props.checkOutTime}</p>
             </div>
+            <button onClick={props.handleClick}>Delete</button>
           </div>
         </div>
 

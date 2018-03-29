@@ -26,7 +26,7 @@ Rails.application.routes.draw do
         resources :lodgings
       end
       resources :events
-      resource :lodgings
+      resources :lodgings
     end
   end
 end

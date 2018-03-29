@@ -32,11 +32,12 @@ const EventTile = (props) => {
               <p>Date: {props.date}</p>
               <p>Time: {props.time}</p>
             </div>
+            <button onClick={props.handleClick}>Delete</button>
           </div>
         </div>
 
         <div className="small-12 medium-3 columns travel-feature-card-price">
-          <h6>${props.expense}</h6>
+          <h6>${props.expense}0</h6>
           <p className="travel-feature-card-price-subtext"></p>
         </div>
       </div>

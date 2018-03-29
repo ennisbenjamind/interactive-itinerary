@@ -36,10 +36,31 @@ class LodgingsContainer extends Component {
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  deleteLodging(id) {
+    fetch(`/api/v1/lodgings/${id}`, {
+      method: 'DELETE',
+      credentials: 'same-origin'
+    }).then(response => {
+        if (response.ok) {
+          return response
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`
+          let error = new Error(errorMessage)
+          throw(error)
+        }
+      }
+    )
+    .then(body => {
+      browserHistory.push(`/trips/${this.props.params.id}/lodgings`)
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`))
+  }
+
 
   render() {
     console.log(this.state)
     let lodgings = this.state.lodgings.map(lodging =>{
+      let handleClick = () => { this.deleteLodging(lodging.id) }
       let check_in_date = new Date(lodging.check_in_date).toDateString()
       let check_out_date = new Date(lodging.check_out_date).toDateString()
       let check_in_time = new Date(lodging.check_in_time).toTimeString()
@@ -49,6 +70,7 @@ class LodgingsContainer extends Component {
           <LodgingTile
             key={lodging.id}
             name={lodging.name}
+            handleClick={handleClick}
             address={lodging.address}
             expense={lodging.expense}
             checkInDate={check_in_date}
