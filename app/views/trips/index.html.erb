@@ -1,9 +1,11 @@
-<h1> Share these credentials with fellow travelers! </h1>
 <% @trips.each do |trip| %>
 <div>
 <h2><%= trip.name %></h2>
 <li><%= "Trip ID: #{trip.id}" %></li>
 <li><%= "Trip Password: #{trip.password}" %></li>
+<%= link_to "Edit Trip", edit_trip_path(trip) %>
+<%= link_to "Delete Trip", trip, method: :delete,
+                                  data: { confirm: "Are you sure?" } %>
 </div>
 
 <% end %>

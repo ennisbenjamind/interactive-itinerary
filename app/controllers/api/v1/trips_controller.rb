@@ -3,8 +3,8 @@ class Api::V1::TripsController < ApiController
 
   def show
     trip = Trip.find(params[:id])
-    lodgings = trip.lodgings
-    events = trip.events
+    lodgings = trip.lodgings.order('check_in_date ASC')
+    events = trip.events.order('date ASC').order('time ASC')
     users = trip.users
     host = Host.find_by(id: trip.host_id)
     render json: {trip: trip, lodgings: lodgings, events: events, users: users, host: host}

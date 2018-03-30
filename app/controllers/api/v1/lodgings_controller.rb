@@ -30,6 +30,6 @@ class Api::V1::LodgingsController < ApiController
   end
 
   def lodging_params
-    params.require(:lodging).permit(:name, :check_in_time, :check_out_time, :check_in_date, :check_out_date, :address, :expense, :trip_id)
+    params.require(:lodging).permit(:name, :check_in_time, :check_out_time, :check_in_date, :check_out_date, :address, :expense, :lat, :lng, :trip_id)
   end
 end

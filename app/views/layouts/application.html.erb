@@ -25,7 +25,7 @@
     <section class="top-bar-section">
       <ul class="right">
         <%- if current_host -%>
-        <li><%= link_to 'Trip Invitations', trips_path %></li>
+        <li><%= link_to 'Manage Trips', trips_path %></li>
         <li><%= link_to 'Host a Trip', new_trip_path %></li>
         <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
         <%- elsif current_user -%>

@@ -19,6 +19,8 @@ class CreateEventContainer extends Component {
       details:'',
       time: '',
       date: '',
+      lat: '',
+      lng: '',
       trip_id: this.props.params.id
     }
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -41,6 +43,8 @@ class CreateEventContainer extends Component {
       details:'',
       time: '',
       date: '',
+      lat: '',
+      lng: '',
       trip_id: this.props.params.id
     })
   }
@@ -78,23 +82,28 @@ class CreateEventContainer extends Component {
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+
   handleSubmit = (event) => {
     event.preventDefault()
-    let formPayload = {
+    geocodeByAddress(this.state.address)
+      .then(results => getLatLng(results[0]))
+      .then(latLng => {
+      let formPayload = {
       name: this.state.name,
       address: this.state.address,
       expense: this.state.expense,
       details: this.state.datails,
       time: this.state.time,
       date: this.state.date,
+      lat: latLng.lat,
+      lng: latLng.lng,
       trip_id: this.state.trip_id
-  }
+    }
     this.addNewEvent(formPayload)
-    geocodeByAddress(this.state.address)
-      .then(results => getLatLng(results[0]))
-      .then(latLng => console.log('Success', latLng))
-      .catch(error => console.error('Error', error))
-  }
+  })
+  .catch(error => console.error('Error', error))
+}
+
 
     handleName (event){
       this.setState({name: event.target.value})

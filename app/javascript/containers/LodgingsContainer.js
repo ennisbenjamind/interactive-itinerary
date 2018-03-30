@@ -63,8 +63,8 @@ class LodgingsContainer extends Component {
       let handleClick = () => { this.deleteLodging(lodging.id) }
       let check_in_date = new Date(lodging.check_in_date).toDateString()
       let check_out_date = new Date(lodging.check_out_date).toDateString()
-      let check_in_time = new Date(lodging.check_in_time).toTimeString()
-      let check_out_time = new Date(lodging.check_out_time).toTimeString()
+      let check_in_time = new Date(lodging.check_in_time).toLocaleTimeString('en-us', {timeZone: 'UTC'})
+      let check_out_time = new Date(lodging.check_out_time).toLocaleTimeString('en-us', {timeZone: 'UTC'})
       return (
         <div className="callout">
           <LodgingTile

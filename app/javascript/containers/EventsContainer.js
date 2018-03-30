@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Router,browserHistory, Route, IndexRoute, Link} from 'react-router'
 import NavBar from '../components/NavBar'
 import EventTile from '../components/EventTile'
+import timezone from "google-timezone-api"
 
 
 class EventsContainer extends Component {
@@ -59,9 +60,15 @@ class EventsContainer extends Component {
 
     console.log(this.state)
     let events = this.state.events.map(event=>{
+      // timezone( {
+      // location: `${event.lat},${event.lng}`})
+      // .then( function( result ) {console.log( result );
+      // })
+      // .catch( function( err ) {console.log( err );
+      // });
       let handleClick = () => { this.deleteEvent(event.id) }
       let date = new Date(event.date).toDateString()
-      let time = new Date(event.time).toTimeString()
+      let time = new Date(event.time).toLocaleTimeString('en-us', {timeZone: 'UTC'})
       return(
         <div className="callout">
           <EventTile

@@ -18,6 +18,8 @@ class CreateLodgingContainer extends Component {
       address:'Philadelphia Marriott Downtown, Market Street, Philadelphia, PA, USA',
       expense:'0',
       details:'',
+      lat: '',
+      lng: '',
       check_in_time: '',
       check_out_time: '',
       check_in_date: '',
@@ -46,6 +48,8 @@ class CreateLodgingContainer extends Component {
       check_out_time: '',
       check_in_date: '',
       check_out_date: '',
+      lat: '',
+      lng: '',
       trip_id: this.props.params.id
     })
   }
@@ -85,6 +89,9 @@ class CreateLodgingContainer extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
+    geocodeByAddress(this.state.address)
+    .then(results => getLatLng(results[0]))
+    .then(latLng => {
     let formPayload = {
       name: this.state.name,
       address: this.state.address,
@@ -93,14 +100,14 @@ class CreateLodgingContainer extends Component {
       check_out_time: this.state.check_out_time,
       check_in_date: this.state.check_in_date,
       check_out_date: this.state.check_out_date,
+      lat: latLng.lat,
+      lng: latLng.lng,
       trip_id: this.state.trip_id
     }
     this.addNewLodging(formPayload)
-    geocodeByAddress(this.state.address)
-    .then(results => getLatLng(results[0]))
-    .then(latLng => console.log('Success', latLng))
-    .catch(error => console.error('Error', error))
-  }
+  })
+  .catch(error => console.error('Error', error))
+}
 
   handleName (event){
     this.setState({name: event.target.value})

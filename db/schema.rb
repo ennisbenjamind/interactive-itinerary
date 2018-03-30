@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180327223701) do
+ActiveRecord::Schema.define(version: 20180330160901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20180327223701) do
     t.string "name", null: false
     t.time "time", null: false
     t.date "date", null: false
+    t.float "lat"
+    t.float "lng"
     t.index ["trip_id"], name: "index_events_on_trip_id"
   end
 
@@ -63,6 +65,8 @@ ActiveRecord::Schema.define(version: 20180327223701) do
     t.date "check_in_date", null: false
     t.time "check_out_time", null: false
     t.date "check_out_date", null: false
+    t.float "lat"
+    t.float "lng"
     t.index ["trip_id"], name: "index_lodgings_on_trip_id"
   end
 
