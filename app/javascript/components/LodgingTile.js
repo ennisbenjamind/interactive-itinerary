@@ -3,7 +3,8 @@ import {Link} from 'react-router';
 
 const LodgingTile = (props) => {
   return(
-  <div className="travel-feature-card">
+
+  <div>
     <div className="travel-feature-card-header{{#if type}} icon {{type}}-icon{{/if}}">
       <div className="row">
          <div className="medium-12 columns">
@@ -36,7 +37,7 @@ const LodgingTile = (props) => {
         </div>
 
         <div className="small-12 medium-3 columns travel-feature-card-price">
-          <h6>${props.expense}</h6>
+          <h6>${props.expense}0</h6>
           <p className="travel-feature-card-price-subtext"></p>
         </div>
       </div>

@@ -3,7 +3,7 @@ import {Link} from 'react-router';
 
 const EventTile = (props) => {
   return(
-  <div className="travel-feature-card">
+  <div className="cell auto">
     <div className="travel-feature-card-header{{#if type}} icon {{type}}-icon{{/if}}">
       <div className="row">
          <div className="medium-12 columns">

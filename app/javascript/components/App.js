@@ -7,7 +7,7 @@ import LodgingsContainer from '../containers/LodgingsContainer';
 import ExpensesContainer from '../containers/ExpensesContainer';
 import CreateEventContainer from '../containers/CreateEventContainer';
 import CreateLodgingContainer from '../containers/CreateLodgingContainer';
-import TripMapContainer from '../containers/TripMapContainer';
+import TripMapContainer from '../containers/TripMapContainer'
 
 
 const App = props => {

@@ -6,6 +6,7 @@ class TripsController < ApplicationController
     @trip = Trip.new
   end
 
+
   def create
     @trip = Trip.new(trip_params)
     @trip.expenses = 0

@@ -51,7 +51,7 @@ class LodgingsContainer extends Component {
       }
     )
     .then(body => {
-      browserHistory.push(`/trips/${this.props.params.id}/lodgings`)
+      this.componentDidMount()
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }
@@ -66,7 +66,7 @@ class LodgingsContainer extends Component {
       let check_in_time = new Date(lodging.check_in_time).toLocaleTimeString('en-us', {timeZone: 'UTC'})
       let check_out_time = new Date(lodging.check_out_time).toLocaleTimeString('en-us', {timeZone: 'UTC'})
       return (
-        <div className="callout">
+        <div>
           <LodgingTile
             key={lodging.id}
             name={lodging.name}
@@ -82,13 +82,18 @@ class LodgingsContainer extends Component {
       )
     })
     return (
-      <div>
+
+      <div id="tile-wrapper">
+        <div className='nav-bar'>
         <NavBar
           key = {this.props.params.id}
           id = {this.props.params.id}
         />
+      </div>
+      <div id='float-right'>
         <Link to={`/trips/${this.props.params.id}/lodgings/new`}>Add Lodging</Link>
         {lodgings}
+      </div>
       </div>
     );
   }

@@ -51,11 +51,8 @@ class ExpensesContainer extends Component {
   }
 
   render() {
-    console.log(this.state)
     let totalExpenses = this.state.total_expense
-    let host = 1
-    let travelersAmt = host + this.state.users.length
-    let individualExpense = totalExpenses / travelersAmt
+    let individualExpense = totalExpenses / (1 + this.state.users.length)
     let eventsExpense = this.state.events.map(event =>{
     return (
         <EventExpenseTile
@@ -81,19 +78,23 @@ class ExpensesContainer extends Component {
       )
     })
     return (
-      <div>
+      <div id="tile-wrapper">
+      <div className="nav-bar">
         <NavBar
           key = {this.props.params.id}
           id = {this.props.params.id}
         />
+      </div>
+        <div id='float-right'>
         <h1>Total Expenses: ${totalExpenses}0</h1>
         Events:
         {eventsExpense}
         Lodgings:
         {lodgings}
         Dues:
-        <li>Host: ${individualExpense}</li>
+        <li>Host- ${individualExpense}</li>
         {dues}
+      </div>
       </div>
     );
   }

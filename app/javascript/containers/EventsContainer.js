@@ -51,20 +51,18 @@ class EventsContainer extends Component {
       }
     )
     .then(body => {
-      browserHistory.push(`/trips/${this.props.params.id}/events`)
+      this.componentDidMount()
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }
 
   render() {
-
-    console.log(this.state)
     let events = this.state.events.map(event=>{
       let handleClick = () => { this.deleteEvent(event.id) }
       let date = new Date(event.date).toUTCString()
       let time = new Date(event.time).toLocaleTimeString('en-us', {timeZone: 'UTC'})
       return(
-        <div className="callout">
+        <div className="grid-x grid-margin-x">
           <EventTile
             key={event.id}
             id={event.id}
@@ -86,6 +84,7 @@ class EventsContainer extends Component {
           id = {this.props.params.id}
         />
         <Link to={`/trips/${this.props.params.id}/events/new`}>Add Event</Link>
+
         {events}
       </div>
     );
