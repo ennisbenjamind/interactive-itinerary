@@ -8,6 +8,7 @@ const NavBar = props => {
         <li><Link to={`/trips/${props.id}/events`}> Events </Link></li>
         <li><Link to={`/trips/${props.id}/lodgings`}> Lodgings </Link></li>
         <li><Link to={`/trips/${props.id}/expenses`}> Expenses </Link></li>
+        <li><Link to={`/trips/${props.id}/map`}> Map </Link></li>
       </ul>
     </div>
   )

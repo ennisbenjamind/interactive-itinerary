@@ -60,14 +60,8 @@ class EventsContainer extends Component {
 
     console.log(this.state)
     let events = this.state.events.map(event=>{
-      // timezone( {
-      // location: `${event.lat},${event.lng}`})
-      // .then( function( result ) {console.log( result );
-      // })
-      // .catch( function( err ) {console.log( err );
-      // });
       let handleClick = () => { this.deleteEvent(event.id) }
-      let date = new Date(event.date).toDateString()
+      let date = new Date(event.date).toUTCString()
       let time = new Date(event.time).toLocaleTimeString('en-us', {timeZone: 'UTC'})
       return(
         <div className="callout">

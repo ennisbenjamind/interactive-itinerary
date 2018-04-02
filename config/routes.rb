@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   resources :trips do
     resources :expenses, to: 'static_pages#index'
   end
+  resources :trips do
+    resources :map, to: 'static_pages#index'
+  end
   resources :attendances
   resources :trips, only: [:new, :create, :index, :destroy, :edit]
 end
