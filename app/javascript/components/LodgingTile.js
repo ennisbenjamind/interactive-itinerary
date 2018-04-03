@@ -4,18 +4,15 @@ import {Link} from 'react-router';
 const LodgingTile = (props) => {
   return(
 
-  <div>
-    <div className="travel-feature-card-header{{#if type}} icon {{type}}-icon{{/if}}">
+  <div className="callout">
       <div className="row">
          <div className="medium-12 columns">
-           <h5 className="travel-feature-card-subtitle">Lodging</h5>
             <div className="travel-feature-card-header-controls">
               <span><a href="#"><i className="fa fa-edit"></i></a></span>
               <span><a href="#"><i className="fa fa-remove"></i></a></span>
            </div>
         </div>
       </div>
-    </div>
 
 
     <div className="travel-feature-card-details">
@@ -32,7 +29,6 @@ const LodgingTile = (props) => {
               <p>Check-in: {props.checkInDate} {props.checkInTime}</p>
               <p>Check-out: {props.checkOutDate} {props.checkOutTime}</p>
             </div>
-            <button onClick={props.handleClick}>Delete</button>
           </div>
         </div>
 
@@ -40,6 +36,7 @@ const LodgingTile = (props) => {
           <h6>${props.expense}0</h6>
           <p className="travel-feature-card-price-subtext"></p>
         </div>
+        <button className="button tiny" onClick={props.handleClick}>Delete</button>
       </div>
     </div>
   </div>

@@ -14,6 +14,7 @@ const EventTile = (props) => {
          <ul>${props.expense}</ul>
          <ul>{props.address}</ul>
          <ul>{props.details}</ul>
+         <a className="button tiny" onClick={props.handleClick}>Delete</a>
        </div>
      </div>
 

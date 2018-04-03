@@ -61,8 +61,10 @@ class LodgingsContainer extends Component {
     console.log(this.state)
     let lodgings = this.state.lodgings.map(lodging =>{
       let handleClick = () => { this.deleteLodging(lodging.id) }
-      let check_in_date = new Date(lodging.check_in_date).toDateString()
-      let check_out_date = new Date(lodging.check_out_date).toDateString()
+      let check_in_date = new Date(lodging.check_in_date).toUTCString()
+      let check_out_date = new Date(lodging.check_out_date).toUTCString()
+      check_in_date = check_in_date.replace("00:00:00 GMT", "")
+      check_out_date = check_out_date.replace("00:00:00 GMT", "")
       let check_in_time = new Date(lodging.check_in_time).toLocaleTimeString('en-us', {timeZone: 'UTC'})
       let check_out_time = new Date(lodging.check_out_time).toLocaleTimeString('en-us', {timeZone: 'UTC'})
       return (
@@ -83,17 +85,13 @@ class LodgingsContainer extends Component {
     })
     return (
 
-      <div id="tile-wrapper">
-        <div className='nav-bar'>
+      <div>
         <NavBar
           key = {this.props.params.id}
           id = {this.props.params.id}
         />
-      </div>
-      <div id='float-right'>
-        <Link to={`/trips/${this.props.params.id}/lodgings/new`}>Add Lodging</Link>
+        <Link className="button expanded" to={`/trips/${this.props.params.id}/lodgings/new`}>Add Lodging</Link>
         {lodgings}
-      </div>
       </div>
     );
   }
