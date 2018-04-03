@@ -36,6 +36,7 @@ class TripsIndexContainer extends Component {
 
   render() {
     let trips = this.state.trips.map(trip => {
+      debugger
       let start_date = new Date(trip.start_date).toLocaleString()
       let end_date = new Date(trip.end_date).toLocaleString()
       return(

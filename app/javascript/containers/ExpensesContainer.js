@@ -6,6 +6,7 @@ import LodgingExpenseTile from '../components/LodgingExpenseTile'
 import TravelerExpenseTile from '../components/TravelerExpenseTile'
 
 
+
 class ExpensesContainer extends Component {
   constructor(props) {
     super(props);
@@ -78,23 +79,22 @@ class ExpensesContainer extends Component {
       )
     })
     return (
-      <div id="tile-wrapper">
-      <div className="nav-bar">
+      <div>
         <NavBar
           key = {this.props.params.id}
           id = {this.props.params.id}
         />
-      </div>
-        <div id='float-right'>
-        <h1>Total Expenses: ${totalExpenses}0</h1>
-        Events:
-        {eventsExpense}
-        Lodgings:
-        {lodgings}
-        Dues:
-        <li>Host- ${individualExpense}</li>
-        {dues}
-      </div>
+        <ul className="align-center pricing-table">
+        <li className="title">Total:</li>
+        <li className="price">${totalExpenses}</li>
+        <li className="title">Events:</li>
+        <li className="description">{eventsExpense}</li>
+        <li className="title">Lodgings:</li>
+        <li className="description">{lodgings}</li>
+        <li className="title">Dues:</li>
+        <li className="description">Host- ${individualExpense}</li>
+        <li className="description">{dues}</li>
+      </ul>
       </div>
     );
   }

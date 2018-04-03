@@ -3,7 +3,6 @@
 <head>
   <title>InteractiveItinerary</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.css">
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA55jmLHtOaXD1oNo1azyznIrvTnTewjvg&libraries=places"></script>
 
   <%= stylesheet_link_tag 'application', media: 'all' %>
@@ -14,16 +13,8 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-  <nav class="top-bar" data-topbar role="navigation">
-    <ul class="title-area">
-      <li class="name">
-        <h1><a href="/">Interactive Itinerary</a></h1>
-      </li>
-    </ul>
-
-    <section class="top-bar-section">
-      <ul class="right">
+    <ul class="menu menu-hover-lines">
+      <li class="active"><a href="/">Home</a>
         <%- if current_host -%>
         <li><%= link_to 'Manage Trips', trips_path %></li>
         <li><%= link_to 'Host a Trip', new_trip_path %></li>
@@ -38,8 +29,7 @@
         <li><%= link_to 'Sign In as Attendee', new_user_session_path %></li>
         <%- end -%>
       </ul>
-    </section>
-  </nav>
+
   <div>
     <%- if !current_host && !current_user -%>
     Sign in to use Interactive Itinerary

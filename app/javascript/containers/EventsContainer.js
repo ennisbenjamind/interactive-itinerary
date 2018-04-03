@@ -57,12 +57,21 @@ class EventsContainer extends Component {
   }
 
   render() {
+    let count = 0
+    let timelineContent;
     let events = this.state.events.map(event=>{
+      count += 1
+      if (count % 2) {
+        timelineContent = "timeline-content"
+      } else {
+        timelineContent = "timeline-content right"
+      }
       let handleClick = () => { this.deleteEvent(event.id) }
       let date = new Date(event.date).toUTCString()
+      date = date.replace("00:00:00 GMT", "")
       let time = new Date(event.time).toLocaleTimeString('en-us', {timeZone: 'UTC'})
       return(
-        <div className="grid-x grid-margin-x">
+        <div className="timeline">
           <EventTile
             key={event.id}
             id={event.id}
@@ -73,6 +82,7 @@ class EventsContainer extends Component {
             details={event.details}
             date={date}
             time={time}
+            timelineContent={timelineContent}
           />
         </div>
       )
@@ -83,9 +93,10 @@ class EventsContainer extends Component {
           key = {this.props.params.id}
           id = {this.props.params.id}
         />
-        <Link to={`/trips/${this.props.params.id}/events/new`}>Add Event</Link>
-
+        <Link className="button expanded" to={`/trips/${this.props.params.id}/events/new`}>Add Event</Link>
+        <div className="timeline">
         {events}
+        </div>
       </div>
     );
   }

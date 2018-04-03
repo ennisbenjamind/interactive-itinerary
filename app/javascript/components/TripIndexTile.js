@@ -3,14 +3,22 @@ import {Link} from 'react-router';
 
 const TripIndexTile = (props) => {
   return(
-    <div className="featured-image-block column">
-      <Link to={`/trips/${props.id}`}>
-      <img src={'https://www.roughguides.com/wp-content/uploads/2014/06/Philippines_Itinerary.png'} />
-        <p className="text-center featured-image-block-title">{props.name}</p>
-          <p className="text-center featured-image-block-title">Begins: {props.start_date}</p>
-            <p className="text-center featured-image-block-title">Ends: {props.end_date}</p>
-      </Link>
-  </div>
-)}
+    <div className="columns small-6">
+      <div className="card-info success">
+        <div className="card-info-label">
+          <div className="card-info-label-text">
+            <Link to={`/trips/${props.id}`}>View</Link>
+          </div>
+        </div>
+        <div className="card-info-content">
+          <h3 className="lead">{props.name}</h3>
+          <p>
+            <ul>Begins: {props.start_date}</ul>
+            <ul>Ends: {props.end_date}</ul>
+          </p>
+        </div>
+      </div>
+    </div>
+  )}
 
-export default TripIndexTile;
+  export default TripIndexTile;
