@@ -12,10 +12,10 @@ const TripIndexTile = (props) => {
         </div>
         <div className="card-info-content">
           <h3 className="lead">{props.name}</h3>
-          <p>
+          <div>
             <ul>Begins: {props.start_date}</ul>
             <ul>Ends: {props.end_date}</ul>
-          </p>
+          </div>
         </div>
       </div>
     </div>
