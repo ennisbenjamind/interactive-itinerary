@@ -4,7 +4,7 @@ import {Link} from 'react-router';
 const LodgingTile = (props) => {
   return(
 
-  <div className="callout">
+    <div className="callout">
       <div className="row">
          <div className="medium-12 columns">
             <div className="travel-feature-card-header-controls">

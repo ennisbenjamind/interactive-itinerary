@@ -3,7 +3,7 @@ import {Link} from 'react-router';
 
 const TripIndexTile = (props) => {
   return(
-    <div className="columns small-6">
+    <div className="columns small-4">
       <div className="card-info success">
         <div className="card-info-label">
           <div className="card-info-label-text">

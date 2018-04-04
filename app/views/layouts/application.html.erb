@@ -32,11 +32,11 @@
 
   <div>
     <%- if !current_host && !current_user -%>
-    Sign in to use Interactive Itinerary
+    <h1 id="map-key" class="callout"> Sign in to use Interactive Itinerary </h1>
     <%- end -%>
     <%- flash.each do |key, value| -%>
     <div class="flash flash-<%= key %>">
-      <%= value %>
+      <p class="callout"><%= value %></p>
     </div>
     <%- end -%>
   </div>

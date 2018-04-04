@@ -17,6 +17,7 @@
  */
 
 #map-key {
+  margin-top: 3px;
   text-align: center;
   text-transform: uppercase;
   font-weight: 500;
@@ -540,6 +541,13 @@
   position: absolute;
   right: 1rem;
   text-align: right;
+}
+
+.callout {
+  border-color: #6D98AB;
+  border-width: 10px;
+  margin-left: 100px;
+  margin-right: 100px;
 }
 
 a {

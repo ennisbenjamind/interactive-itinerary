@@ -1,5 +1,5 @@
 class Trip < ApplicationRecord
-  validates_presence_of :start_date, :end_date
+  validates_presence_of :start_date, :end_date, :name, :password
   validates :password, uniqueness: true
   has_one :host
   has_many :events

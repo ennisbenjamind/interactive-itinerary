@@ -58,7 +58,6 @@ class LodgingsContainer extends Component {
 
 
   render() {
-    console.log(this.state)
     let lodgings = this.state.lodgings.map(lodging =>{
       let handleClick = () => { this.deleteLodging(lodging.id) }
       let check_in_date = new Date(lodging.check_in_date).toUTCString()
