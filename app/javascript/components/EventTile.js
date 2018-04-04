@@ -6,7 +6,7 @@ const EventTile = (props) => {
 
     <div className="timeline-item">
        <div className="timeline-icon">
-         <img src="https://cdns.iconmonstr.com/wp-content/assets/preview/2017/96/iconmonstr-check-mark-18.png" class="" height="21" width="21" alt=""></img>
+         <img src="https://cdns.iconmonstr.com/wp-content/assets/preview/2017/96/iconmonstr-check-mark-18.png" height="21" width="21" alt=""></img>
        </div>
        <div className={props.timelineContent}>
          <h2 className="timeline-content-date">{props.date} - {props.time}</h2>

@@ -133,7 +133,6 @@ class CreateLodgingContainer extends Component {
 
 
   render() {
-      console.log(this.state)
       const inputProps = {
         value: this.state.address,
         onChange: this.onChange,
@@ -184,7 +183,7 @@ class CreateLodgingContainer extends Component {
 
             <ExpenseField
               content={this.state.expense}
-              label ={"Event expense (Optional):"}
+              label ={"Lodging expense (Optional):"}
               handleChange={this.handleExpense}
             />
 

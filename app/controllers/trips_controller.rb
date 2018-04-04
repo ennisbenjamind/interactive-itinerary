@@ -12,10 +12,9 @@ class TripsController < ApplicationController
     @trip.expenses = 0
     @trip.host_id = current_host.id
     if @trip.save
-      flash[:success] = 'Trip created!'
       redirect_to root_path
     else
-      flash[:errors] = @trip.errors.full_messages.join(', ')
+      flash.now[:errors] = @trip.errors.full_messages.join(', ')
       render :new
     end
   end
@@ -35,10 +34,9 @@ class TripsController < ApplicationController
   def update
     @trip = Trip.find(params[:id])
     if @trip.update(trip_params)
-      flash[:success] = "Successfuly updated trip!"
       redirect_to trips_path
     else
-      flash[:errors] = @trip.errors.full_messages.join(', ')
+      flash.now[:errors] = @trip.errors.full_messages.join(', ')
       render :edit
   end
 end

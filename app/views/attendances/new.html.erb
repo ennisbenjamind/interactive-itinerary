@@ -1,4 +1,4 @@
-
+<div class="new-article-form callout">
 <%= form_for(@attendance) do |f| %>
 <div class="field">
   <%= f.label :trip_id, 'Trip ID' %><br />
@@ -14,5 +14,6 @@
   <%= f.submit %>
 </div>
 <% end %>
+</div>
 
 <h5><%= link_to "Go Back to Home", root_path%></h5>

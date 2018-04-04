@@ -12,9 +12,9 @@ class Api::V1::TripsController < ApiController
 
   def index
     if current_user
-      trips = current_user.trips
+      trips = current_user.trips.order('start_date ASC')
     elsif current_host
-      trips = current_host.trips
+      trips = current_host.trips.order('start_date ASC')
     end
     render json: {trips: trips}
   end
