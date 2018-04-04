@@ -2511,13 +2511,16 @@ ul.no-bullet, ol.no-bullet {
     background-color: #14679e;
     color: #fefefe; }
   .button.tiny {
-    font-size: 0.6rem; }
+    font-size: 0.6rem;
+    background-color: #00275E
+   }
   .button.small {
     font-size: 0.75rem; }
   .button.large {
     font-size: 1.25rem; }
   .button.expanded {
     display: block;
+    background-color: #00275E;
     width: 100%;
     margin-right: 0;
     margin-left: 0; }
@@ -2534,10 +2537,10 @@ ul.no-bullet, ol.no-bullet {
       background-color: #5e5e5e;
       color: #fefefe; }
   .button.success {
-    background-color: #3adb76;
+    background-color: #FEB729;
     color: #0a0a0a; }
     .button.success:hover, .button.success:focus {
-      background-color: #22bb5b;
+      background-color: #EEC015;
       color: #0a0a0a; }
   .button.warning {
     background-color: #ffae00;
@@ -3398,6 +3401,7 @@ select {
       -ms-flex-align: center;
           align-items: center;
     }
+
   [data-whatinput='mouse'] .menu li {
     outline: 0; }
   .menu a,

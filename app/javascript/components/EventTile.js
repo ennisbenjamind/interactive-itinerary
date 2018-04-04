@@ -11,7 +11,7 @@ const EventTile = (props) => {
        <div className={props.timelineContent}>
          <h2 className="timeline-content-date">{props.date} - {props.time}</h2>
          <ul>{props.name}</ul>
-         <ul>${props.expense}</ul>
+         <ul>${props.expense}0</ul>
          <ul>{props.address}</ul>
          <ul>{props.details}</ul>
          <a className="button tiny" onClick={props.handleClick}>Delete</a>

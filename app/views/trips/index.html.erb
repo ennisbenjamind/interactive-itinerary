@@ -1,5 +1,6 @@
 <% @trips.each do |trip| %>
-  <div class="card-info">
+<div class="columns small-6">
+  <div class="card-info success">
     <div class="card-info-label">
       <div class="card-info-label-text">
         Share
@@ -11,7 +12,7 @@
         <ul><%= "Trip ID: #{trip.id}" %></ul>
         <ul><%= "Trip Password: #{trip.password}" %></ul>
         <% trip.users.each do |user| %>
-        Attendance:
+        <h3 class="lead"> Attendance: </h3>
         <ul><%= user.email %></ul>
         <% end %>
         <div class="button-group-option" data-grouptype="OR">
@@ -21,5 +22,7 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
 
-      <% end %>
+<% end %>

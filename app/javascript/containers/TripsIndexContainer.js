@@ -36,9 +36,10 @@ class TripsIndexContainer extends Component {
 
   render() {
     let trips = this.state.trips.map(trip => {
-      debugger
-      let start_date = new Date(trip.start_date).toLocaleString()
-      let end_date = new Date(trip.end_date).toLocaleString()
+      let start_date = new Date(trip.start_date).toUTCString()
+      let end_date = new Date(trip.end_date).toUTCString()
+      start_date = start_date.replace("00:00:00 GMT", "")
+      end_date = end_date.replace("00:00:00 GMT", "")
       return(
         <TripIndexTile
           key = {trip.id}
