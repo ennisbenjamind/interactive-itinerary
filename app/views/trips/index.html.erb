@@ -1,0 +1,28 @@
+<% @trips.each do |trip| %>
+<div class="columns small-6">
+  <div class="card-info success">
+    <div class="card-info-label">
+      <div class="card-info-label-text">
+        Share
+      </div>
+    </div>
+    <div class="card-info-content">
+      <h3 class="lead"> <%= trip.name %> </h3>
+      <p>
+        <ul><%= "Trip ID: #{trip.id}" %></ul>
+        <ul><%= "Trip Password: #{trip.password}" %></ul>
+        <% trip.users.each do |user| %>
+        <h3 class="lead"> Attendance: </h3>
+        <ul><%= user.email %></ul>
+        <% end %>
+        <div class="button-group-option" data-grouptype="OR">
+          <a class="button success radius" <%= link_to "Edit Trip", edit_trip_path(trip) %></a>
+          <a class="button primary radius" <%= link_to "Delete Trip", trip, method: :delete,
+          data: { confirm: "Are you sure?" } %></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% end %>
