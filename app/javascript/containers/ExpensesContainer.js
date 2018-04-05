@@ -84,18 +84,18 @@ class ExpensesContainer extends Component {
           key = {this.props.params.id}
           id = {this.props.params.id}
         />
-        <div className="columns medium-9 large-centered" >
+      <div className="columns medium-9 large-centered" >
         <ul className="pricing-table">
-        <li className="title">Total:</li>
-        <li className="price">${totalExpenses}</li>
-        <li className="title">Events:</li>
-        <li className="description">{eventsExpense}</li>
-        <li className="title">Lodgings:</li>
-        <li className="description">{lodgings}</li>
-        <li className="title">Dues:</li>
-        <li className="description">Host- ${individualExpense}</li>
-        <li className="description">{dues}</li>
-      </ul>
+          <li className="title">Total:</li>
+          <li className="price">${totalExpenses}</li>
+          <li className="title">Events:</li>
+          <li className="description">{eventsExpense}</li>
+          <li className="title">Lodgings:</li>
+          <li className="description">{lodgings}</li>
+          <li className="title">Dues:</li>
+          <li className="description">Host- ${individualExpense}</li>
+          <li className="description">{dues}</li>
+        </ul>
       </div>
     </div>
     );

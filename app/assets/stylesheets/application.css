@@ -16,6 +16,7 @@
 
  */
 
+
 #map-key {
   margin-top: 3px;
   text-align: center;
@@ -120,6 +121,7 @@
    border: solid 1px #cacaca;
    width: 100%;
    text-align: center;
+   list-style: none;
  }
 
  .pricing-table li {
@@ -365,6 +367,11 @@
 .submenu-hover-lines li.active > a {
   background-color: transparent;
 }
+
+.align-center {
+  -ms-flex-pack: center;
+      justify-content: center; }
+
 
 .submenu-hover-lines a:before,
 .submenu-hover-lines a::after {

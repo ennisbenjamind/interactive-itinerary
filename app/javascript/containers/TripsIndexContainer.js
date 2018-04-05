@@ -52,11 +52,9 @@ class TripsIndexContainer extends Component {
     })
 
     return (
-      <div className="featured-image-block-grid">
-        <div className="row large-up-4 small-up-2">
+      <div className="row large-up-4 small-up-2">
           {trips}
       </div>
-    </div>
     )
   }
 }
