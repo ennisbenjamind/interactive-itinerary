@@ -21,7 +21,7 @@ const LodgingTile = (props) => {
         <div className="small-12 medium-9 columns travel-feature-card-content">
           <div className="row align-center">
             <div className="small-4 medium-2 columns">
-              <img className="travel-feature-card-image" src="https://unsplash.it/600/600/?image=1081" alt=""></img>
+              <img className="travel-feature-card-image" src="https://www.bluearmy.com/wp-content/uploads/2013/10/lodging-295x300.png" alt=""></img>
             </div>
             <div className="small-8 medium-10 columns">
               <h6 className="travel-feature-card-title">{props.name}</h6>
