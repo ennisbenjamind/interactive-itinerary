@@ -15,7 +15,7 @@ class TripMapContainer extends Component {
       events: [],
       lodgings: [],
       selectedName: '',
-      selectedAddress: '',
+      selectedAddress: 'Add lodging details to render map',
       center: [0,0]
     }
     this.handleClick = this.handleClick.bind(this);
