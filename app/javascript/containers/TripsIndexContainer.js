@@ -45,6 +45,7 @@ class TripsIndexContainer extends Component {
           key = {trip.id}
           id = {trip.id}
           name = {trip.name}
+          image_link = {trip.image_link}
           start_date = {start_date}
           end_date = {end_date}
         />
