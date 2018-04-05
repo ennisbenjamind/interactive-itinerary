@@ -4,9 +4,13 @@ Interactive Itinerary is a React on Rails web app that allows users to collabora
 
 
 Technologies:
+
 React
+
 Ruby on Rails
+
 Google Places API with React - https://github.com/kenny-hibino/react-places-autocomplete
+
 React Mapbox - https://github.com/alex3165/react-mapbox-gl
 
 
