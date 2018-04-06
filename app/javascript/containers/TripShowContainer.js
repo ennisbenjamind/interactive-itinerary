@@ -10,7 +10,7 @@ class TripShowContainer extends Component {
   }
 
   render() {
-    
+
     return (
       <div>
         <NavBar

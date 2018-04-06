@@ -95,8 +95,8 @@ class TripMapContainer extends Component {
             id = {this.props.params.id}
           />
           <div id="map-key" className="callout">
-          <h1>{this.state.selectedName}</h1>
-          <p>{this.state.selectedAddress}</p>
+            <h1>{this.state.selectedName}</h1>
+            <p>{this.state.selectedAddress}</p>
           </div>
           <Layer
             type="symbol"

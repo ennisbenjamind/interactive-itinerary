@@ -1,34 +1,34 @@
 <div class="new-article-form callout">
-<%= form_for(@trip) do |f| %>
-<div class="field">
-  <%= f.label :name %><br />
-  <%= f.text_field :name%>
-</div>
+  <%= form_for(@trip) do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name%>
+  </div>
 
-<div class="field">
-  <%= f.label :start_date %><br />
-  <%= f.date_select :start_date %>
-</div>
+  <div class="field">
+    <%= f.label :start_date %><br />
+    <%= f.date_select :start_date %>
+  </div>
 
-<div class="field">
-  <%= f.label :end_date %><br />
-  <%= f.date_select :end_date %>
-</div>
+  <div class="field">
+    <%= f.label :end_date %><br />
+    <%= f.date_select :end_date %>
+  </div>
 
-<div class="field">
-  <%= f.label :password, "Create Trip Password (Allows for others to join your trip):" %><br />
-  <%= f.text_field :password%>
-</div>
+  <div class="field">
+    <%= f.label :password, "Create Trip Password (Allows for others to join your trip):" %><br />
+    <%= f.text_field :password%>
+  </div>
 
-<div class="field">
-  <%= f.label :image_link, "Add a .png or .jpg image link to spice up your itinerary:" %><br />
-  <%= f.text_field :image_link %>
-</div>
+  <div class="field">
+    <%= f.label :image_link, "Add a .png or .jpg image link to spice up your itinerary:" %><br />
+    <%= f.text_field :image_link %>
+  </div>
 
-<div class="actions">
-  <%= f.submit %>
-</div>
-<% end %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  <% end %>
 </div>
 
 <h5><%= link_to "Go Back to Home", root_path%></h5>
