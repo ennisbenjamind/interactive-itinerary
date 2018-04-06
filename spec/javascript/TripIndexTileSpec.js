@@ -32,9 +32,9 @@ describe('TripIndexTile', () => {
   });
 
 
- it('renders a paragraph tags', done => {
+ it('renders trip name and dates on card', done => {
    setTimeout(() => {
-     expect(wrapper.find('p')).toBePresent();
+     expect(wrapper.find('div')).toIncludeText('My Trip', 'THU, 05 APR 2018', 'THU, 05 APR 2018');
      done();
    }, 0);
  })
