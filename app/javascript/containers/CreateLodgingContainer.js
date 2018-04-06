@@ -138,6 +138,7 @@ class CreateLodgingContainer extends Component {
         onChange: this.onChange,
       }
       let message = this.state.errors[0]
+      
     return (
       <div>
         <NavBar

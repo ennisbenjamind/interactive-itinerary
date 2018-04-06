@@ -13,35 +13,35 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-    <ul class="menu menu-hover-lines">
-      <li class="active"><a href="/">Home</a>
-        <%- if current_host -%>
-        <li><%= link_to 'Manage Trips', trips_path %></li>
-        <li><%= link_to 'Host a Trip', new_trip_path %></li>
-        <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-        <%- elsif current_user -%>
-        <li><%= link_to 'Join Trip', new_attendance_path %></li>
-        <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-        <%- else -%>
-        <li><%= link_to 'Become a Host', new_host_registration_path %></li>
-        <li><%= link_to 'Sign in as Host', new_host_session_path %></li>
-        <li><%= link_to 'Sign Up as Attendee', new_user_registration_path %></li>
-        <li><%= link_to 'Sign In as Attendee', new_user_session_path %></li>
-        <%- end -%>
-      </ul>
+  <ul class="menu menu-hover-lines">
+    <li class="active"><a href="/">Home</a>
+      <%- if current_host -%>
+      <li><%= link_to 'Manage Trips', trips_path %></li>
+      <li><%= link_to 'Host a Trip', new_trip_path %></li>
+      <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+      <%- elsif current_user -%>
+      <li><%= link_to 'Join Trip', new_attendance_path %></li>
+      <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+      <%- else -%>
+      <li><%= link_to 'Become a Host', new_host_registration_path %></li>
+      <li><%= link_to 'Sign in as Host', new_host_session_path %></li>
+      <li><%= link_to 'Sign Up as Attendee', new_user_registration_path %></li>
+      <li><%= link_to 'Sign In as Attendee', new_user_session_path %></li>
+      <%- end -%>
+    </ul>
 
-  <div>
-    <%- if !current_host && !current_user -%>
-    <h1 id="map-key" class="callout"> Sign in to use Interactive Itinerary </h1>
-    <%- end -%>
-    <%- flash.each do |key, value| -%>
-    <div class="flash flash-<%= key %>">
-      <p class="callout"><%= value %></p>
+    <div>
+      <%- if !current_host && !current_user -%>
+      <h1 id="map-key" class="callout"> Sign in to use Interactive Itinerary </h1>
+      <%- end -%>
+      <%- flash.each do |key, value| -%>
+      <div class="flash flash-<%= key %>">
+        <p class="callout"><%= value %></p>
+      </div>
+      <%- end -%>
     </div>
-    <%- end -%>
-  </div>
-  <%= yield %>
-  <%= javascript_include_tag 'application' %>
-  <%= yield :extra_footer %>
-</body>
-</html>
+    <%= yield %>
+    <%= javascript_include_tag 'application' %>
+    <%= yield :extra_footer %>
+  </body>
+  </html>

@@ -11,7 +11,7 @@ class TripsIndexContainer extends Component {
       message: ""
     }
   }
-
+  
   componentDidMount () {
     fetch('/api/v1/trips', {
       credentials: 'same-origin'
@@ -54,7 +54,7 @@ class TripsIndexContainer extends Component {
 
     return (
       <div className="row large-up-4 small-up-2">
-          {trips}
+        {trips}
       </div>
     )
   }

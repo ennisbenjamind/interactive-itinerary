@@ -38,8 +38,8 @@ class TripsController < ApplicationController
     else
       flash.now[:errors] = @trip.errors.full_messages.join(', ')
       render :edit
+    end
   end
-end
 
   def destroy
     @trip = Trip.find(params[:id])

@@ -5,7 +5,7 @@ const TravelerExpenseTile = (props) => {
   return(
     <div>
       <li> {props.email} - ${props.expense} </li>
-  </div>
-)}
+    </div>
+  )}
 
 export default TravelerExpenseTile;
