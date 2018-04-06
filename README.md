@@ -5,7 +5,7 @@ Interactive Itinerary is a React on Rails web app that allows users to collabora
 ------------------------------------------------------------------------------------------
 Heroku: https://interact-itinerary.herokuapp.com/
 
-Brief Demo: https://vimeo.com/263425704
+Brief Demo: https://vimeo.com/263536331
 
 -----------------------------------------------------------------------------------------
 Technologies:
