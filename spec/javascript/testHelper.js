@@ -20,6 +20,19 @@ let requireAll = requireContext => {
   requireContext.keys().forEach(requireContext);
 };
 
+const google = {
+  maps: {
+    places: {
+      AutocompleteService: () => {},
+      PlacesServiceStatus: {
+        OK: 'OK',
+      },
+    },
+  },
+};
+global.google = google;
+global.window.google = google;
+
 // require all js files except testHelper.js in the test folder
 requireAll(require.context('./', true, /^((?!testHelper).)*\.jsx?$/));
 

@@ -92,22 +92,22 @@ class CreateLodgingContainer extends Component {
     geocodeByAddress(this.state.address)
     .then(results => getLatLng(results[0]))
     .then(latLng => {
-    let formPayload = {
-      name: this.state.name,
-      address: this.state.address,
-      expense: this.state.expense,
-      check_in_time: this.state.check_in_time,
-      check_out_time: this.state.check_out_time,
-      check_in_date: this.state.check_in_date,
-      check_out_date: this.state.check_out_date,
-      lat: latLng.lat,
-      lng: latLng.lng,
-      trip_id: this.state.trip_id
-    }
-    this.addNewLodging(formPayload)
-  })
-  .catch(error => console.error('Error', error))
-}
+      let formPayload = {
+        name: this.state.name,
+        address: this.state.address,
+        expense: this.state.expense,
+        check_in_time: this.state.check_in_time,
+        check_out_time: this.state.check_out_time,
+        check_in_date: this.state.check_in_date,
+        check_out_date: this.state.check_out_date,
+        lat: latLng.lat,
+        lng: latLng.lng,
+        trip_id: this.state.trip_id
+      }
+      this.addNewLodging(formPayload)
+    })
+    .catch(error => console.error('Error', error))
+  }
 
   handleName (event){
     this.setState({name: event.target.value})
@@ -133,12 +133,12 @@ class CreateLodgingContainer extends Component {
 
 
   render() {
-      const inputProps = {
-        value: this.state.address,
-        onChange: this.onChange,
-      }
-      let message = this.state.errors[0]
-      
+    const inputProps = {
+      value: this.state.address,
+      onChange: this.onChange,
+    }
+    let message = this.state.errors[0]
+
     return (
       <div>
         <NavBar
@@ -158,44 +158,44 @@ class CreateLodgingContainer extends Component {
             inputProps={inputProps}
           />
 
-            <CheckInDateField
-              content={this.state.check_in_date}
-              label="Check-in Date:"
-              handleChange={this.handleCheckInDate}
-            />
+          <CheckInDateField
+            content={this.state.check_in_date}
+            label="Check-in Date:"
+            handleChange={this.handleCheckInDate}
+          />
 
-            <CheckInTimeField
-              content={this.state.check_in_time}
-              label="Check-in Time:"
-              handleChange={this.handleCheckInTime}
-            />
+          <CheckInTimeField
+            content={this.state.check_in_time}
+            label="Check-in Time:"
+            handleChange={this.handleCheckInTime}
+          />
 
-            <CheckOutDateField
-              content={this.state.check_out_date}
-              label="Check-out Date:"
-              handleChange={this.handleCheckOutDate}
-            />
+          <CheckOutDateField
+            content={this.state.check_out_date}
+            label="Check-out Date:"
+            handleChange={this.handleCheckOutDate}
+          />
 
-            <CheckOutTimeField
-              content={this.state.check_out_time}
-              label="Check-out Time:"
-              handleChange={this.handleCheckOutTime}
-            />
+          <CheckOutTimeField
+            content={this.state.check_out_time}
+            label="Check-out Time:"
+            handleChange={this.handleCheckOutTime}
+          />
 
-            <ExpenseField
-              content={this.state.expense}
-              label ={"Lodging expense (Optional):"}
-              handleChange={this.handleExpense}
-            />
+          <ExpenseField
+            content={this.state.expense}
+            label ={"Lodging expense (Optional):"}
+            handleChange={this.handleExpense}
+          />
 
 
-            <div className="button-group">
-              <button className="button" onClick={this.handleClearForm}>Clear</button>
-              <input className="button" type="submit" value="Submit"  />
-            </div>
-          </form>
-        </div>
-      );
-    }
+          <div className="button-group">
+            <button className="button" onClick={this.handleClearForm}>Clear</button>
+            <input className="button" type="submit" value="Submit"  />
+          </div>
+        </form>
+      </div>
+    );
   }
+}
 export default CreateLodgingContainer;
