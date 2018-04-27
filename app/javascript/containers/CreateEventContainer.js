@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import {Router,browserHistory, Route, IndexRoute, Link} from 'react-router';
 import NavBar from '../components/NavBar';
-import NameField from '../components/NameField';
-import ExpenseField from '../components/ExpenseField';
-import DetailsField from '../components/DetailsField';
+import TextField from '../components/TextField';
 import TimeField from '../components/TimeField';
 import DateField from '../components/DateField';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
@@ -141,7 +139,7 @@ class CreateEventContainer extends Component {
         {message}
         <form className="new-article-form callout" onSubmit={this.handleSubmit}>
 
-          <NameField
+          <TextField
             content={this.state.name}
             label="Event name:"
             handleChange={this.handleName}
@@ -163,13 +161,13 @@ class CreateEventContainer extends Component {
             handleChange={this.handleTime}
           />
 
-          <ExpenseField
+          <TextField
             content={this.state.expense}
             label ={"Event expense (Optional):"}
             handleChange={this.handleExpense}
           />
 
-          <DetailsField
+          <TextField
             content={this.state.details}
             label = {"Event details (Optional):"}
             handleChange={this.handleDetails}

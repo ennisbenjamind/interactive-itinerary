@@ -1,12 +1,9 @@
 import React, {Component} from 'react';
 import {Router,browserHistory, Route, IndexRoute, Link} from 'react-router'
 import NavBar from '../components/NavBar'
-import NameField from '../components/NameField';
-import ExpenseField from '../components/ExpenseField';
-import CheckInTimeField from '../components/CheckInTimeField';
-import CheckOutTimeField from '../components/CheckOutTimeField';
-import CheckInDateField from '../components/CheckInDateField';
-import CheckOutDateField from '../components/CheckOutDateField';
+import TextField from '../components/TextField';
+import TimeField from '../components/TimeField';
+import DateField from '../components/DateField';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 
 class CreateLodgingContainer extends Component {
@@ -148,7 +145,7 @@ class CreateLodgingContainer extends Component {
         {message}
         <form className="new-article-form callout" onSubmit={this.handleSubmit}>
 
-          <NameField
+          <TextField
             content={this.state.name}
             label="Lodging:"
             handleChange={this.handleName}
@@ -158,31 +155,31 @@ class CreateLodgingContainer extends Component {
             inputProps={inputProps}
           />
 
-          <CheckInDateField
+          <DateField
             content={this.state.check_in_date}
             label="Check-in Date:"
             handleChange={this.handleCheckInDate}
           />
 
-          <CheckInTimeField
+          <TimeField
             content={this.state.check_in_time}
             label="Check-in Time:"
             handleChange={this.handleCheckInTime}
           />
 
-          <CheckOutDateField
+          <DateField
             content={this.state.check_out_date}
             label="Check-out Date:"
             handleChange={this.handleCheckOutDate}
           />
 
-          <CheckOutTimeField
+          <TimeField
             content={this.state.check_out_time}
             label="Check-out Time:"
             handleChange={this.handleCheckOutTime}
           />
 
-          <ExpenseField
+          <TextField
             content={this.state.expense}
             label ={"Lodging expense (Optional):"}
             handleChange={this.handleExpense}
