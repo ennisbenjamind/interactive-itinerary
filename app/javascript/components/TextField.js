@@ -1,15 +1,15 @@
 import React from 'react';
 
-const CheckOutDateField = (props) => {
+const TextField = (props) => {
   return (
     <label>{props.label}
-      <input
+      <textarea
         onChange = {props.handleChange}
-        type="date"
+        type='text'
         value={props.content}
       />
     </label>
   );
 }
 
-export default CheckOutDateField;
+export default TextField;
